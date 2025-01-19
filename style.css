@@ -1,6 +1,177 @@
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }
+  font: 100%/1.5 system-ui; /* Set font family and line height */
+  max-width: 100ch; /* Limit the width to 100 characters */
+  margin: 0 auto; /* Center horizontally (removes left margin) */
+  padding: 0; /* Remove all padding */
+  padding-top: 1em; /* Add vertical space at the top */
+}
+
+/* Define and apply accent color */
+:root {
+  --color-accent: oklch(65% 50% 0); /* Accent color */
+  --color-accent-light: oklch(95% 10% 0); /* Lighter version for hover background */
+}
+
+html {
+  accent-color: var(--color-accent); /* Set global accent color */
+}
+
+/* Navigation bar styles */
+nav {
+  display: flex; /* Enable Flexbox */
+  justify-content: space-around; /* Evenly distribute links */
+  align-items: center; /* Align links vertically */
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 1em; /* Space around nav content */
+  margin-bottom: 1em; /* Add space below the nav */
+  border-bottom: 1px solid oklch(80% 3% 200); /* Cool gray bottom border */
+}
+
+nav a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use parent's text color */
+  text-align: center; /* Center text inside the box */
+  padding: 0.5em 1em; /* Add spacing around links */
+  font-weight: bold;
+  position: relative; /* Necessary for hover effects */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+nav a:hover {
+  background-color: var(--color-accent-light); /* Add light background on hover */
+  border-radius: 5px; /* Add slight rounding on hover */
+}
+
+nav a::after {
+  content: ""; /* Create a pseudo-element for the underline */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Hidden by default */
+  height: 0.4em; /* Thickness of the underline */
+  background-color: var(--color-accent); /* Use the accent color */
+  transition: width 0.3s ease; /* Smooth animation for the underline */
+}
+
+nav a:hover::after {
+  width: 100%; /* Expand the underline on hover */
+}
+
+nav a.current {
+  color: black; /* Keep the current link bold */
+  font-weight: bold;
+}
+
+nav a.current::after {
+  content: ""; /* Add underline to the current page link */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Full width underline */
+  height: 0.4em; /* Thickness of the underline */
+  background-color: oklch(80% 3% 200); /* Cool gray */
+}
+
+/* Grid layout for the form */
+form {
+  display: grid; /* Enable CSS Grid */
+  grid-template-columns: auto 1fr; /* Two columns: labels and inputs */
+  gap: 1em; /* Add spacing between elements */
+  max-width: 600px; /* Limit form width */
+  margin: 0 auto; /* Center the form */
+  padding: 1em; /* Add padding inside the form */
+  background-color: #f8f9fa; /* Light background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Labels take up one row */
+form label {
+  grid-column: 1 / -1; /* Span the entire row */
+  display: grid; /* Make labels grid containers */
+  grid-template-columns: subgrid; /* Use subgrid for alignment */
+  font-weight: bold; /* Emphasize labels */
+  margin-block: 0.5em; /* Space above and below */
+}
+
+/* Form controls in the grid */
+form input,
+form textarea {
+  grid-column: 2; /* Place inputs in the second column */
+  width: 100%; /* Make inputs fill the grid column */
+  box-sizing: border-box; /* Include padding and border in width */
+  padding: 0.5em; /* Add padding inside inputs */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Button styling */
+form button {
+  grid-column: 1 / -1; /* Span the entire width of the grid */
+  padding: 0.5em 1em; /* Add padding inside the button */
+  font-weight: bold; /* Emphasize text */
+  color: white;
+  background-color: var(--color-accent); /* Accent color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+form button:hover {
+  background-color: oklch(70% 40% 0); /* Slightly darker accent color on hover */
+}
+
+/* Projects container grid */
+.projects {
+  display: grid; /* Enable Grid Layout */
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive columns */
+  gap: 1em; /* Space between grid items */
+  padding: 1em; /* Add padding around the grid container */
+}
+
+/* Style individual articles */
+.projects article {
+  display: grid; /* Enable Grid Layout within each article */
+  grid-template-rows: subgrid; /* Use subgrid for alignment */
+  grid-row: span 3; /* Ensure each article spans 3 rows */
+  padding: 1em; /* Add spacing inside the article */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #f8f9fa; /* Light background */
+}
+
+/* Ensure headings, images, and text align properly */
+.projects article h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.2em; /* Slightly larger font for headings */
+  line-height: 1.1; /* Compact line height */
+  text-wrap: balance; /* Prevent uneven text wrapping */
+}
+
+.projects article img {
+  max-width: 100%; /* Ensure images don't exceed container width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.projects article p {
+  margin: 0; /* Remove default margin */
+  line-height: 1.5; /* Add readability to paragraphs */
+}
+
+/* Global heading styles */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1; /* Compact line height for headings */
+  text-wrap: balance; /* Prevent uneven line breaks */
+}
+
+/* Adjust heading sizes for hierarchy */
+h1 {
+  font-size: 4em; /* Make h1 significantly larger */
+}
+
+h2 {
+  font-size: 1.5em; /* Distinguish h2 from h1 */
+}

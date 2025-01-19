@@ -10,27 +10,24 @@
     <nav>
         <a href="../index.html">Home</a>
         <a href="../projects/index.html">Projects</a>
-        <a href="../contact/index.html">Contact</a>
+        <a href="../contact/index.html" class="current">Contact</a>
         <a href="../cv/index.html">CV</a>
         <a href="https://github.com/21phuctran" target="_blank">GitHub</a>
     </nav>
     <h1>Contact</h1>
     <p>This is the page where people can reach out to me.</p>
 
-    <form action="mailto:pct001@ucsd.edu" method="POST" enctype="text/plain">
+    <form action="mailto:example@example.com" method="POST" enctype="text/plain">
         <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" value="example@example.com" required>
-        <br><br>
-
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      
         <label for="subject">Subject:</label>
-        <input id="subject" name="subject" value="Hello!" required>
-        <br><br>
-
+        <input id="subject" name="subject" placeholder="Enter the subject" required>
+      
         <label for="body">Message:</label>
-        <textarea id="body" name="body" rows="5" cols="30"></textarea>
-        <br><br>
-
-        <button>Submit</button>
+        <textarea id="body" name="body" rows="5" placeholder="Write your message here"></textarea>
+      
+        <button type="submit">Send</button>
     </form>
 </body>
 </html>
